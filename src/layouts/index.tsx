@@ -1,12 +1,16 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { useGuard } from "@/hooks/use-guard";
 import type { HTMLAttributes } from "react";
 import { Outlet } from "react-router";
 
 type LayoutProps = HTMLAttributes<HTMLDivElement>;
 
 const Layout: React.FC<LayoutProps> = () => {
+  // 使用路由守卫，保护所有需要认证的路由
+  useGuard();
+
   return (
     <SidebarProvider
       style={

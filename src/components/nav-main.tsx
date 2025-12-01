@@ -7,7 +7,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import type { NavItem } from "@/data/navigation";
+import type { NavItem } from "@/layouts/menus";
 
 export function NavMain({ items }: { items: NavItem[] }) {
   const location = useLocation();

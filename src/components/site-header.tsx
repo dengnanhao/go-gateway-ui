@@ -3,8 +3,8 @@ import { useLocation } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { navMainItems } from "@/data/navigation";
-import type { NavItem } from "@/data/navigation";
+import { navMainItems } from "@/layouts/menus";
+import type { NavItem } from "@/layouts/menus";
 
 export function SiteHeader() {
   const { pathname } = useLocation();
@@ -29,12 +29,12 @@ export function SiteHeader() {
         <div className="ml-auto flex items-center gap-2">
           <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
             <a
-              href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
+              href="#"
               rel="noopener noreferrer"
               target="_blank"
               className="dark:text-foreground"
             >
-              GitHub
+              设置
             </a>
           </Button>
         </div>

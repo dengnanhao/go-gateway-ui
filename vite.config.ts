@@ -11,4 +11,13 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    headers: { "Access-Control-Allow-Origin": "*" },
+    proxy: {
+      "/api": {
+        target: "http://localhost:8040",
+        changeOrigin: true,
+      },
+    },
+  },
 });

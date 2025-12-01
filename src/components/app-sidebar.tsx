@@ -12,7 +12,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { navMainItems } from "@/data/navigation";
+import { navMainItems } from "@/layouts/menus";
 
 const user = {
   name: "admin",
