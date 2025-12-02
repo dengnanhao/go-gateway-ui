@@ -38,3 +38,9 @@ type ExportResponse = {
     [key: string]: string;
   };
 };
+
+type TablePagination = {
+  current: number;
+  pageSize: number;
+  total?: number;
+};
