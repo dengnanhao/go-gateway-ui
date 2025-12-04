@@ -27,7 +27,6 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   (response) => {
     const { status, data } = response;
-    console.log(response);
     if (status !== 200) {
       toast.error("服务异常");
       return Promise.reject(response.statusText);
