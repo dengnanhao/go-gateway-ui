@@ -213,11 +213,6 @@ const Services: React.FC = () => {
       }
     },
     {
-      accessorKey: 'serviceAddr',
-      header: '服务地址',
-      cell: ({ row }) => <div>{row.original.serviceAddr || '-'}</div>
-    },
-    {
       accessorKey: 'qps',
       header: 'QPS',
       cell: ({ row }) => <div>{row.original.qps || 0}</div>,
