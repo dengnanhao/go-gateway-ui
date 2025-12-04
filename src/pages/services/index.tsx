@@ -1,7 +1,7 @@
 import { DataTable, type ExtendedColumnDef, type TableStateChangeParams, type DataTableRef } from '@/components/data-table'
 import z from 'zod'
 import { Button } from '@/components/ui/button'
-import { IconDotsVertical, IconPlus, IconRefresh } from '@tabler/icons-react'
+import { IconActivity, IconDotsVertical, IconPlus, IconRefresh } from '@tabler/icons-react'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Badge } from '@/components/ui/badge'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
@@ -17,6 +17,7 @@ import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
+import ServiceStat from './service-stat'
 
 export const schema = z.object({
   id: z.string(),
@@ -63,6 +64,9 @@ let currentService: ServiceData | null = null
 const Services: React.FC = () => {
   const tableRef = useRef<DataTableRef>(null)
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [statDialogOpen, setStatDialogOpen] = useState(false)
+  const [selectedServiceId, setSelectedServiceId] = useState<string>('')
+  const [selectedServiceName, setSelectedServiceName] = useState<string>('')
   const list = useMutation({
     mutationFn: getServices
   })
@@ -236,26 +240,41 @@ const Services: React.FC = () => {
     {
       id: 'actions',
       cell: ({ row }) => (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="data-[state=open]:bg-muted text-muted-foreground flex size-8" size="icon">
-              <IconDotsVertical />
-              <span className="sr-only">打开菜单</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-32">
-            <DropdownMenuItem onClick={() => handleEdit(row.original)}>修改</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              variant="destructive"
-              onClick={() => {
-                del.mutate(row.original.id)
-              }}
-            >
-              删除
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            title="统计"
+            variant="ghost"
+            className="data-[state=open]:bg-muted text-muted-foreground flex size-8 cursor-pointer"
+            size="icon"
+            onClick={() => {
+              setSelectedServiceId(row.original.id)
+              setSelectedServiceName(row.original.serviceName)
+              setStatDialogOpen(true)
+            }}
+          >
+            <IconActivity />
+          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button title="更多操作" variant="ghost" className="data-[state=open]:bg-muted text-muted-foreground flex size-8 cursor-pointer" size="icon">
+                <IconDotsVertical />
+                <span className="sr-only">打开菜单</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-32">
+              <DropdownMenuItem onClick={() => handleEdit(row.original)}>修改</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                variant="destructive"
+                onClick={() => {
+                  del.mutate(row.original.id)
+                }}
+              >
+                删除
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       )
     }
   ]
@@ -655,6 +674,9 @@ const Services: React.FC = () => {
           </form>
         </DrawerContent>
       </Drawer>
+
+      {/* 服务统计对话框 */}
+      <ServiceStat serviceId={selectedServiceId} serviceName={selectedServiceName} open={statDialogOpen} onOpenChange={setStatDialogOpen} />
     </div>
   )
 }
