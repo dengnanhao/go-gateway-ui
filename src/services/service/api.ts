@@ -44,3 +44,25 @@ export const getServiceStat = (id: string): Promise<BasicFetchResult<API.GetServ
     method: 'GET'
   })
 }
+
+export const getServicePanel = (): Promise<BasicFetchResult<API.GetServicePanelResponse>> => {
+  return request({
+    url: '/api/v1/services/panel',
+    method: 'GET'
+  })
+}
+
+export const getFlowStat = (): Promise<BasicFetchResult<API.GetServiceStatResponse>> => {
+  return request({
+    url: `/api/v1/services/stat`,
+    method: 'GET'
+  })
+}
+
+// 获取所有服务
+export const getAllServices = (): Promise<BasicFetchResult<API.ServiceInfo[]>> => {
+  return request({
+    url: '/api/v1/services/all',
+    method: 'GET'
+  })
+}

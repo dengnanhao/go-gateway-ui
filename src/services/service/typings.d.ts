@@ -101,4 +101,11 @@ declare namespace API {
     today: number[]
     yesterday: number[]
   }
+
+  type GetServicePanelResponse = {
+    serviceNum: number
+    todayRequestNum: number
+    yesterdayRequestNum: number
+    currentQPS: number
+  }
 }

@@ -60,20 +60,20 @@ const ServiceStat: React.FC<ServiceStatProps> = ({ serviceId, serviceName, open,
         </DialogHeader>
         <div className="mt-4 overflow-hidden">
           {stat.isPending ? (
-            <div className="flex items-center justify-center h-[400px]">
+            <div className="flex items-center justify-center h-[300px]">
               <div className="text-muted-foreground">加载中...</div>
             </div>
           ) : stat.isError ? (
-            <div className="flex items-center justify-center h-[400px]">
+            <div className="flex items-center justify-center h-[300px]">
               <div className="text-destructive">加载失败，请稍后重试</div>
             </div>
           ) : chartData.length === 0 ? (
-            <div className="flex items-center justify-center h-[400px]">
+            <div className="flex items-center justify-center h-[300px]">
               <div className="text-muted-foreground">暂无数据</div>
             </div>
           ) : (
             <div className="w-full">
-              <ChartContainer config={chartConfig} className="h-[400px] w-[462px]">
+              <ChartContainer config={chartConfig} className="h-[300px] w-[462px]">
                 <LineChart data={chartData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} />
                   <XAxis dataKey="hour" tickLine={false} axisLine={false} tickMargin={8} tickFormatter={(value) => value} />
