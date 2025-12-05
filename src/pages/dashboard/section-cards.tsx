@@ -2,6 +2,7 @@ import { IconTrendingDown, IconTrendingUp, IconChartPie, IconChartDots2 } from '
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { LoadTypeEnum } from '@/constant/enums'
 
 type SectionCardsProps = {
   data: API.GetServicePanelResponse
@@ -22,9 +23,9 @@ export function SectionCards({ data, services }: SectionCardsProps) {
             不同类型服务占比 <IconChartPie className="size-4" />
           </div>
           <div className="text-muted-foreground gap-2 flex items-center">
-            <Badge variant="outline">http {services.filter((service) => service.loadType === 1).length}</Badge>
-            <Badge variant="outline">tcp {services.filter((service) => service.loadType === 2).length}</Badge>
-            <Badge variant="outline">grpc {services.filter((service) => service.loadType === 3).length}</Badge>
+            <Badge variant="outline">http {services.filter((service) => service.loadType === LoadTypeEnum.HTTP).length}</Badge>
+            <Badge variant="outline">tcp {services.filter((service) => service.loadType === LoadTypeEnum.TCP).length}</Badge>
+            <Badge variant="outline">grpc {services.filter((service) => service.loadType === LoadTypeEnum.GRPC).length}</Badge>
           </div>
         </CardFooter>
       </Card>
