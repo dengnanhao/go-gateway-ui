@@ -48,12 +48,13 @@ export function SectionCards({ data, services }: SectionCardsProps) {
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            流量{yesterdayRequestNum > todayRequestNum ? '下降' : '上升'} {(((yesterdayRequestNum - todayRequestNum) / yesterdayRequestNum) * 100).toFixed(2)}%{' '}
-            <IconTrendingDown className={'size-4'} />
+            流量{yesterdayRequestNum > todayRequestNum ? '下降' : '上升'}{' '}
+            {((Math.abs(yesterdayRequestNum - todayRequestNum) / yesterdayRequestNum) * 100).toFixed(2)}%{' '}
+            {yesterdayRequestNum > todayRequestNum ? <IconTrendingDown className={'size-4'} /> : <IconTrendingUp className={'size-4'} />}
           </div>
           <div className="text-muted-foreground">
             今日请求量较昨日{yesterdayRequestNum > todayRequestNum ? '下降' : '上升'}{' '}
-            {(((yesterdayRequestNum - todayRequestNum) / yesterdayRequestNum) * 100).toFixed(2)}%
+            {((Math.abs(yesterdayRequestNum - todayRequestNum) / yesterdayRequestNum) * 100).toFixed(2)}%
           </div>
         </CardFooter>
       </Card>
