@@ -16,9 +16,41 @@ export const createService = (data: API.CreateServiceRequest): Promise<BasicFetc
   })
 }
 
+export const createTcpService = (data: API.CreateServiceRequest): Promise<BasicFetchResult<void>> => {
+  return request({
+    url: '/api/v1/services/tcp',
+    method: 'POST',
+    data
+  })
+}
+
+export const createGrpcService = (data: API.CreateServiceRequest): Promise<BasicFetchResult<void>> => {
+  return request({
+    url: '/api/v1/services/grpc',
+    method: 'POST',
+    data
+  })
+}
+
 export const updateService = (data: API.UpdateServiceRequest): Promise<BasicFetchResult<void>> => {
   return request({
     url: `/api/v1/services/${data.id}`,
+    method: 'PUT',
+    data
+  })
+}
+
+export const updateTcpService = (data: API.UpdateServiceRequest): Promise<BasicFetchResult<void>> => {
+  return request({
+    url: `/api/v1/services/tcp/${data.id}`,
+    method: 'PUT',
+    data
+  })
+}
+
+export const updateGrpcService = (data: API.UpdateServiceRequest): Promise<BasicFetchResult<void>> => {
+  return request({
+    url: `/api/v1/services/grpc/${data.id}`,
     method: 'PUT',
     data
   })

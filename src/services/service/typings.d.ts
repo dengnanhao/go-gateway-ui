@@ -24,8 +24,8 @@ declare namespace API {
     needWebsocket?: number
     openAuth?: number
     roundType?: number
-    rule: string
-    ruleType: number
+    rule?: string
+    ruleType?: number
     serviceDesc: string
     serviceFlowLimit?: number
     serviceName: string
@@ -36,6 +36,7 @@ declare namespace API {
     urlRewrite?: string
     weightList: string
     whiteList?: string
+    port?: number
   }
 
   type UpdateServiceRequest = CreateServiceRequest & {
