@@ -308,7 +308,7 @@ const HttpDrawer: React.FC<Props> = ({ drawerOpen, setDrawerOpen, serviceId, cb 
               <Field>
                 <FieldLabel htmlFor="whiteList">白名单IP</FieldLabel>
                 <FieldContent>
-                  <Textarea id="whiteList" placeholder="请输入白名单IP，多个IP换行分隔" {...register('whiteList')} rows={3} />
+                  <Textarea id="whiteList" placeholder="请输入白名单IP，多个IP换行分隔，白名单优先级高于黑名单" {...register('whiteList')} rows={3} />
                 </FieldContent>
               </Field>
 

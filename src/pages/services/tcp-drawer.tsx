@@ -17,7 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 const createServiceSchema = z.object({
   serviceName: z.string().min(1, '服务名称不能为空'),
   serviceDesc: z.string().min(1, '服务描述不能为空'),
-  port: z.number('端口必须是数字').int('端口必须是整数').positive('端口必须是正数').min(1, '端口最小值为1').max(65535, '端口最大值为65535').default(8001),
+  port: z.number('端口必须是数字').int('端口必须是整数').positive('端口必须是正数').min(8001, '端口最小值为8001').max(8999, '端口最大值为8999').default(8001),
   openAuth: z.number().default(0),
   blackList: z.string().optional(),
   whiteList: z.string().optional(),
@@ -169,7 +169,7 @@ const HttpDrawer: React.FC<Props> = ({ drawerOpen, setDrawerOpen, serviceId, cb 
                   <Input
                     type="number"
                     id="port"
-                    placeholder="请输入端口"
+                    placeholder="请输入端口，8001-8999"
                     {...register('port', {
                       valueAsNumber: true
                     })}
@@ -203,7 +203,7 @@ const HttpDrawer: React.FC<Props> = ({ drawerOpen, setDrawerOpen, serviceId, cb 
               <Field>
                 <FieldLabel htmlFor="whiteList">白名单IP</FieldLabel>
                 <FieldContent>
-                  <Textarea id="whiteList" placeholder="请输入白名单IP，多个IP换行分隔" {...register('whiteList')} rows={3} />
+                  <Textarea id="whiteList" placeholder="请输入白名单IP，多个IP换行分隔，白名单优先级高于黑名单" {...register('whiteList')} rows={3} />
                 </FieldContent>
               </Field>
 
